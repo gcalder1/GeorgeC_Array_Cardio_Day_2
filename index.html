@@ -101,11 +101,69 @@
     // Find is like filter, but instead returns just the one you are looking for
     // find the comment with the ID of 823423
 
+    // const found = comments.find(idNum => idNum.id === 823423 ? true : false);
+    // console.log(found); (My attempt| Ignore)
 
+
+    //+++Wes Bos Code+++//
+    // const comment = comments.find(function(comment) {
+    //   if (comment.id === 823423) {
+    //     return true;
+    //   }
+    // });
+
+    const comment = comments.find(comment => comment.id === 823423);
+    console.log(comment);
+
+    /*
+    +++++What does .find() do?+++++
+
+    .find() is an iterative method that looks for something based on your provided
+    function. Similar to .some(), .find stops when it finds the value that fits
+    your function's conditions. But, instead of soleley returning a boolean value
+    , the .find() method returns the element that was found. And if it DOES NOT find
+    something to satisfy the criteria of your function, then the method will return
+    as false and you will see 'undefined' as what was found instead.
+    */
 
     // Array.prototype.findIndex()
     // Find the comment with this ID
     // delete the comment with the ID of 823423
+
+    // const delIndex = comments.findIndex(comment => comment.id === 823423);
+    // comments.splice(delIndex, 1);
+    // console.table(comments); //my attempt | ignore
+
+    const index = comments.findIndex(comment => comment.id === 823423);
+    console.log(index); //gives us the id for object that has this in it
+
+    console.table(comments);
+    const newComments = [
+      ...comments.slice(0, index), //"..." to spread the items within the new array
+      ...comments.slice(index + 1)
+    ];
+    console.table(newComments); //making a new array with the updated change helps with distinction and readability
+    //popular in redox
+
+    /* 
+    .findIndex() is an iterative method, like .find(), passes elements of the array
+    though the criteria of the method's function and then stops iterating upon reaching 
+    something that fulfills the criteria. However, instead of returning the element, we get the index 
+    of the element as a value. And unlike the .find() method, instead of getting an
+    "undefined" value returned for our falsey, we get a -1 value returned for our .findIndex() if it cannot find the
+    element we are looking for based on our function used. Another difference between
+    .find() and .findIndex() is that you CAN get the truthy in return against an empty
+    element (in a sparse array), which will return the element of that index. However,
+    the function will need to accurately describe what that empty element is or else
+    it will return a -1. 
+
+    e.g.
+    const rArr = ["tree", "pogo", "apple", "cheese", "ball", "rat"];
+
+    const found = rArr.findIndex(element => element === "apple");
+
+    console.log(found); //would show an index of 2
+    */
 
   </script>
 </body>
